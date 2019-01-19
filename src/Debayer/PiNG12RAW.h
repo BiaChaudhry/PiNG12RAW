@@ -18,8 +18,8 @@
 
 namespace Debayer {
     enum DebayeringAlgorithm {
-        LINEAR
-    };
+        BILINEAR //bilinear debayering method
+    }; 
 
     enum Channel {
         RED,
@@ -39,9 +39,9 @@ namespace Debayer {
         char *augmented(const char *filename, Channel ch);
 
     public:
-        DebayerContainer(const char *inputfilename, unsigned int width, unsigned int height);
+        DebayerContainer(const char *inputfilename, unsigned int width, unsigned int height); //constructor 
 
-        ~DebayerContainer();
+        ~DebayerContainer(); //destructor 
 
         int ComputeChannels();
 

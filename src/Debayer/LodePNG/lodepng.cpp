@@ -843,7 +843,7 @@ unsigned lodepng_huffman_code_lengths(unsigned* lengths, const unsigned* frequen
     lists.chains1 = (BPMNode**)lodepng_malloc(lists.listsize * sizeof(BPMNode*));
     if(!lists.memory || !lists.freelist || !lists.chains0 || !lists.chains1) error = 83; /*alloc fail*/
 
-    if(!error)
+    if(!error) //in case of no error
     {
       for(i = 0; i != lists.memsize; ++i) lists.freelist[i] = &lists.memory[i];
 
