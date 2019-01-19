@@ -6,7 +6,12 @@
  *
  */
 
-#include "PiNG12RAW.h"
+#include "PiNG12RAW.h" //header file
+
+// Bia Chaudhry committed some changes: 
+// 1) Added some comments in .h file
+// 2) Merged grn_1 channel with grn_2 channel as recommended by the owner of this Repository @supragya
+
 
 Debayer::DebayerContainer::DebayerContainer(const char *inputfilename, unsigned int width, unsigned int height) {
     this->width = width;
@@ -44,12 +49,12 @@ int Debayer::DebayerContainer::ComputeChannels() {
             iOff = row * (width / 2) + col;
             red_Gr[iOff] = iBuf[rPtr];
             grn1Gr[iOff] = (((uint8_t) iBuf[rPtr + 1] & 0x0F) << 4 |
-                            (uint8_t) iBuf[rPtr + 2] >> 4);
+                            (uint8_t) iBuf[rPtr + 2] >> 4) + iBuf[rPtr];  //merging grn_1 channel with grn_2 channel
         } else {
             row = row / 2;
             col = col / 2;
             iOff = row * (width / 2) + col;
-            grn2Gr[iOff] = iBuf[rPtr];
+            //grn2Gr[iOff] = iBuf[rPtr]; // removed this by commenting for the time being 
             blueGr[iOff] = (((uint8_t) iBuf[rPtr + 1] & 0x0F) << 4 |
                             (uint8_t) iBuf[rPtr + 2] >> 4);
         }
